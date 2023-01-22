@@ -4,12 +4,11 @@
 
 FROM debian:buster
 
-MAINTAINER Pedro Ângelo <pangelo@void.io>
-
-ENV LF_CORE_VERSION 3.2.1
-ENV LF_FRONTEND_VERSION 3.2.1
-ENV LF_WEBMCP_VERSION 2.1.0
-ENV LF_MOONBRIDGE_VERSION 1.0.1
+ENV LF_CORE_VERSION 4.2.2
+ENV LF_FRONTEND_VERSION 4.0.0
+ENV LF_WEBMCP_VERSION 2.2.1
+ENV LF_MOONBRIDGE_VERSION 1.1.3
+ENV LUA_VERSION 5.3
 
 #
 # install dependencies
@@ -19,10 +18,10 @@ RUN apt-get update && apt-get -y install \
         build-essential \
         exim4 \
         imagemagick \
-        liblua5.2-dev \
+        liblua${LUA_VERSION}-dev \
         libpq-dev \
-        lua5.2 \
-        liblua5.2-0 \
+        lua${LUA_VERSION} \
+        liblua${LUA_VERSION}-0 \
         postgresql \
         postgresql-server-dev-11 \
         pmake \
@@ -109,7 +108,7 @@ RUN addgroup --system lf \
 RUN rm -rf /opt/lf/sources \
     && apt-get -y purge \
         build-essential \
-        liblua5.2-dev \
+        liblua${LUA_VERSION}-dev \
         libpq-dev \
         postgresql-server-dev-11 \
     && apt-get -y autoremove \
